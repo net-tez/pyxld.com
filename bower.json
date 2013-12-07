@@ -1,0 +1,28 @@
+{
+  "name": "pyxld.com",
+  "version": "0.0.0",
+  "authors": [
+    "Connor Peet <connor@connorpeet.com>"
+  ],
+  "main": "Gruntfile.js",
+  "license": "Proprietary",
+  "homepage": "https://github.com/Pyxld/pyxld.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.2",
+    "greensock-js": "~1.9.8",
+    "SuperScrollorama": "~1.0.2",
+    "underscore": "~1.0.2",
+    "jquery-waypoints": "~2.0.3",
+    "mixitup": "~1.5.5",
+    "requirejs": "~2.1.9",
+    "requirejs-text": "~2.0.10"
+  }
+}
