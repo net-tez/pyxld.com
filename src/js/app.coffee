@@ -18,59 +18,57 @@ define [
 		navheight = $('#js-nav').height()
 
 		parallaxer = (element) ->
-			h = $(this).height()
+			h = $(element).height()
 			controller.addTween(
 				element,
 				(new TimelineLite()).append([
-					TweenMax.fromTo($(element + ' .center'), 1, 
-						{css:{'padding-top': 0}, immediateRender:true}, 
-						{css:{'padding-top': h  * 0.25}}
+					TweenMax.fromTo($(element), 1, 
+						{css:{'background-position': '0px 0px'}, immediateRender:true}, 
+						{css:{'background-position':'0px ' + h  * 0.25 + 'px'}}
 					),
 				]),
 				h
 			)
+
+		parallaxer '#hello'
         
 		$('a.scrollto').on 'click', (e) ->
 			$('body').animate({
-					scrollTop: $( $(this).attr('href') ).offset().top
-				}, 500)
+					scrollTop: $( $(@).attr('href') ).offset().top
+				}, 1000)
 			
 			e.preventDefault()
 			return false
 
 		$('#js-navlist a').each ->
-			$elem = $( $(this).attr('href'))
+			$elem = $( $(@).attr('href'))
 
 			$elem.waypoint =>
 				$('#js-navlist li').removeClass 'active'
-				$(this).parent('li').addClass 'active'
+				$(@).parent('li').addClass 'active'
         
 
 		$('#portfolio').waypoint ->
 			$(@).waypoint('destroy')
 			$('#portfolio .project').each ->
-				name = $(this).attr('data-name')
-				$('.thumbnail', this).css 'background-image', 'url("img/thumbnails/' + name + '.jpg")'
+				name = $(@).attr('data-name')
+				$('.thumbnail', @).css 'background-image', 'url("img/thumbnails/' + name + '.jpg")'
 
-				$(this).on 'click', ->
+				$(@).on 'click', ->
 					require ['text!../items/' + name + '/index.html'], (data) ->
 						$('#portview').html(data).slideDown(500);
 						screenCalc()
 						$('body').animate({
 								scrollTop: $('#portview').offset().top - 80
 						}, 500)
-
-		$('html').on 'click', ->
-			if testimonialbox is on
-				$('#clientlist li').removeClass('active')
-				testimonialbox = false
+		screenCalc()
 
 	screenCalc = () ->
 		standard = { x: 960, y: 573 }
 
 		$('.screened').each ->
 
-			if $('.screen', this).length isnt 0 then return false
+			if $('.screen', @).length isnt 0 then return false
 
 			$parent = $(@).parent()
 			dims =
@@ -132,18 +130,25 @@ define [
 
 	centerElements = ->
 		$('.center').each ->
-			p_width  = $(this).parent().width();
-			p_height = $(this).parent().height();
+			p_width  = $(@).parent().width();
+			p_height = $(@).parent().height();
 
-			width  = $(this).width();
-			height = $(this).height();
+			width  = $(@).width();
+			height = $(@).height();
 
-			$(this).css
-				top : Math.max((p_height - height) * 0.5, 40) + 'px'
-				left: Math.max((p_width  - width ) * 0.5, 0 ) + 'px'
+			cents = {}
+			only = $(@).attr 'data-only'
+			padding = $(@).attr('data-pad') or 40
+			if only is 'y' or not only
+				cents.top = Math.max((p_height - height) * 0.5, padding) + 'px'
 
-			$(this).parent().css
-				'min-height': Math.max(height, p_height) + 'px'
+				$(@).parent().css
+					'min-height': Math.max(height, p_height) + 'px'
+
+			if only is 'x' or not only
+				cents.left = Math.max((p_width  - width ) * 0.5, 0 ) + 'px'
+
+			$(@).css cents
 
 	setSlide = ->
 		height = $(window).height()

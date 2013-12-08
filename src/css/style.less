@@ -127,3 +127,72 @@ a:hover {
 		width: 150px;
 	}
 }
+
+h3 {
+	font-weight: 300;
+	font-size: 2em;
+	text-align: center;
+}
+.section-divider {
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+	text-transform: uppercase;
+	font-size: 4em;
+	font-weight: 200;
+	margin: 80px 0 40px;
+	text-align: center;
+	color: #666;
+
+	span {
+		color: @brand-primary;
+	}
+}
+
+.arr {
+	display: block;
+	background: url('../img/arrow.png') 0px 0px no-repeat;
+	width: 57px;
+	height: 61px;
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	margin-left: -28px;
+
+	&.arr-light {
+		background-position: -57px 0;
+	}
+	&.arr-dark {
+		background-position: 0 0;
+	}
+	&.arr-down {
+		.rotate(0deg);
+	}
+	&.arr-left {
+		.rotate(90deg);
+	}
+	&.arr-right {
+		.rotate(270deg);
+	}
+}
+
+.blue {
+	background: #3fb4e2;
+	color: #fff;
+	padding: 20px 0;
+}
+
+#about {
+	.blue {
+		margin-top: 50px;
+	}
+	.screened {
+		margin: -50px 0;
+	}
+	p {
+		font-size: 1.2em;
+		line-height: 1.6em;
+		position: relative;
+	}
+}
