@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        banner: '/*! Built with Grunt */',
+        banner: '/*! Built with Grunt */\n"use strict";',
         compress: false
       },
       dist: {

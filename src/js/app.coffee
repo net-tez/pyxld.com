@@ -31,6 +31,18 @@ define [
 			)
 
 		parallaxer '#hello'
+
+		controller.addTween(
+			'#about .screened',
+			(new TimelineLite()).append([
+				TweenMax.fromTo($('#about .screened'), 1, 
+					{css:{'top': 75}, immediateRender:true}, 
+					{css:{'top': 0}}
+				),
+			]),
+			winheight * 0.75,
+			-winheight
+		)
         
 		$('a.scrollto').on 'click', (e) ->
 			$('body').animate({
@@ -143,7 +155,7 @@ define [
 				cents.top = Math.max((p_height - height) * 0.5, padding) + 'px'
 
 				$(@).parent().css
-					'min-height': Math.max(height, p_height) + 'px'
+					'min-height': Math.max(height, p_height, $(@).attr('min-height')) + 'px'
 
 			if only is 'x' or not only
 				cents.left = Math.max((p_width  - width ) * 0.5, 0 ) + 'px'
