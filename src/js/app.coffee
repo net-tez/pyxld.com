@@ -43,6 +43,34 @@ define [
 			winheight * 0.75,
 			-winheight
 		)
+
+		controller.addTween(
+			'#team',
+			(new TimelineLite()).append([
+				TweenMax.fromTo($('#team h2'), 1, 
+					{css:{'top': 75}, immediateRender:true}, 
+					{css:{'top': 0}}
+				),
+			]),
+			winheight * 0.75,
+			-winheight
+		)
+
+		controller.addTween(
+			'#services .row',
+			(new TimelineLite()).append([
+				TweenMax.fromTo($('#services .service:nth-child(odd)'), 1, 
+					{css:{'left': -winwidth}, immediateRender:true}, 
+					{css:{'left': 0}}
+				),
+				TweenMax.fromTo($('#services .service:nth-child(even)'), 1, 
+					{css:{'left': winwidth}, immediateRender:true}, 
+					{css:{'left': 0}}
+				),
+			]),
+			winheight * 0.5,
+			-winheight
+		)
         
 		$('a.scrollto').on 'click', (e) ->
 			$('body').animate({
@@ -154,8 +182,7 @@ define [
 			if only is 'y' or not only
 				cents.top = Math.max((p_height - height) * 0.5, padding) + 'px'
 
-				$(@).parent().css
-					'min-height': Math.max(height, p_height, $(@).attr('min-height')) + 'px'
+				_.defer -> $(@).parent().css {'min-height': Math.max(height, p_height, $(@).attr('min-height') or 0) + 'px'}
 
 			if only is 'x' or not only
 				cents.left = Math.max((p_width  - width ) * 0.5, 0 ) + 'px'
