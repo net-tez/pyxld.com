@@ -14,7 +14,7 @@ module.exports = function(grunt) {
       dist: {
         expand: true,
         cwd: 'src',
-        src: ['**/*.{jpg{'],
+        src: ['**/*.jpg'],
         dest: 'dist'
       }
     },
@@ -102,12 +102,27 @@ module.exports = function(grunt) {
     },
     concurrent: {
       build: ['coffee', 'less', 'imagemin', 'htmlmin', 'copy'],
-      postbuild: ['uglify']
+      postbuild: ['uglify'],
+      watch: ['watch:coffee', 'watch:less', 'watch:html']
     },
     clean: {
       pre: ['dist'],
       post: ['.tmp']
-    }
+    },
+    watch: {
+      coffee: {
+        files: ['src/js/*.coffee'],
+        tasks: ['coffee', 'uglify']
+      },
+      less: {
+        files: ['src/css/*.less'],
+        tasks: ['less']
+      },
+      html: {
+        files: ['src/*.html'],
+        tasks: ['htmlmin']
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-concurrent');
@@ -118,7 +133,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['clean:pre', 'concurrent:build', 'concurrent:postbuild', 'clean:post']);
+  grunt.registerTask('spy', ['clean:pre', 'concurrent:build', 'concurrent:postbuild', 'clean:post', 'concurrent:watch']);
 
 };
