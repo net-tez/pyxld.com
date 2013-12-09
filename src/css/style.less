@@ -40,6 +40,7 @@
 .slide {
 	position: relative;
 	padding-bottom: 150px;
+	overflow: hidden;
 }
 
 a:hover {
@@ -159,15 +160,23 @@ h3 {
 	color: #fff;
 }
 
+.slide > .arr:last-child {
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	margin-left: -28px;
+	.transition(0.3s);
+
+	&:hover {
+		bottom:20px;
+	}
+}
+
 .arr {
 	display: block;
 	background: url('../img/arrow.png') 0px 0px no-repeat;
 	width: 57px;
 	height: 61px;
-	position: absolute;
-	bottom: 30px;
-	left: 50%;
-	margin-left: -28px;
 
 	&.arr-light {
 		background-position: -57px 0;
@@ -251,7 +260,7 @@ h3 {
 		min-height: 11em;
 	}
 	.social {
-		margin-top: 1em;
+		margin: 1em 0.5em;
 	}
 }
 
@@ -299,10 +308,29 @@ a.social {
 		}
 }
 
+.flipper-frames () {
+	0% {
+		.rotateY(0deg);
+	}
+	50% {
+		.rotateY(90deg);
+	}
+	100% {
+		.rotateY(0deg);
+	}
+}
+
+@-webkit-keyframes flipper-rotate {.flipper-frames;}
+@-moz-keyframes flipper-rotate {.flipper-frames;}
+@-ms-keyframes flipper-rotate {.flipper-frames;}
+@keyframes flipper-rotate {.flipper-frames;}
+
 .service {
 	text-align: center;
 	padding: 40px 0;
 	position: relative;
+	.rotateY(0deg);
+	.transition(0.2s);
 
 	h3 {
 		margin: 10px 0 0;
@@ -336,5 +364,21 @@ a.social {
 	.fa {
 		background: #fff;
 		color: #000;
+		border: none;
+	}
+	p, h3, .fa {
+		.transition(0.2s);
+	}
+
+	&.hover {
+		.animation(flipper-rotate 0.2s);
+
+		p, h3, .fa {
+			color: #fff;
+			.transition(0.2s);
+		}
+		&::after, .fa {
+			background: #000;
+		}
 	}
 }

@@ -81,13 +81,14 @@ define [
 			return false
 
 		$('#js-navlist a').each ->
-			$elem = $( $(@).attr('href'))
-
+			$elem = $($(@).attr('href'))
+			return false if not $elem
+			
 			$elem.waypoint =>
 				$('#js-navlist li').removeClass 'active'
 				$(@).parent('li').addClass 'active'
         
-
+		###
 		$('#portfolio').waypoint ->
 			$(@).waypoint('destroy')
 			$('#portfolio .project').each ->
@@ -101,6 +102,7 @@ define [
 						$('body').animate({
 								scrollTop: $('#portview').offset().top - 80
 						}, 500)
+		###
 		screenCalc()
 
 	screenCalc = () ->
@@ -195,6 +197,13 @@ define [
 		$('.slide').css
 			'min-height': height + 'px'
 
+	flipBind = ->
+		$('.service').hover(
+			-> $(@).addClass('hover'),
+			-> $(@).removeClass('hover')
+		)
+
+
 
 	resizeUpdates = _.throttle(
 		->
@@ -209,6 +218,7 @@ define [
 				initPrecenter()
 				setSlide()
 				centerElements()
+				flipBind()
 				initPostcenter()
 
 				$(window).on 'resize', resizeUpdates
