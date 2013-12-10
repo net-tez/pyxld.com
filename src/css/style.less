@@ -382,3 +382,112 @@ a.social {
 		}
 	}
 }
+
+#portfolio-grid {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+
+	&:after{
+		content: '';
+		display: inline-block;
+		width: 100%;
+	}
+
+	.gap{
+		display: inline-block;
+		width: 200px;
+	}
+
+	.mix {
+		width: 23%;
+		margin: 1%;
+		opacity: 0;
+		display: none;
+		cursor: pointer;
+	}
+}
+
+#portfolio {
+	.filtering {
+		text-align: center;
+
+		li {
+			margin-right: 10px;
+			
+			&:after {
+				content: "/";
+				color: @brand-primary;
+				padding-left: 15px;
+			}
+			
+			&:last-of-type:after {
+				content: "";
+			}
+		}
+	}
+
+	.filter {
+		font-family: @font-family-serif;
+		font-style: italic;
+		text-transform: lowercase;
+		color: #424242;
+		cursor: pointer;
+		display: inline-block;
+
+		&.active {
+			color: @brand-primary;
+		}
+	}
+
+	.thumbnail {
+		height: 200px;
+		background-position: center center;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+		background-size: 100%;
+		.transition(0.2s);
+
+		&:hover {
+			background-size: 110%;
+			.transition(0.3s);
+		}
+	}
+
+	.projectinfo h4 {
+		text-align: left;
+		text-transform: uppercase;
+		font-weight: 400;
+		color: #666;
+
+		em {
+			text-transform: lowercase;
+			font-family: 'Georgia', Georgia, serif;
+			color: #aaa;
+		}
+	}
+}
+#portview {
+
+	background: #fafafa;
+	padding: 40px 0;
+	
+	blockquote {
+		border-left: 3px solid #ddd;
+		margin-left: 10px;
+		padding-left: 19px;
+		font-style: italic;
+	}
+	img {
+		max-width: 100%;
+	}
+}
+h3.title {
+	&::after {
+		content: "\00a0";
+		width: 3em;
+		height: 3px;
+		display: block;
+		background: #000;
+		margin: 10px 0;
+	}
+}

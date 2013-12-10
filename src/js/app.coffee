@@ -87,30 +87,28 @@ define [
 			$elem.waypoint =>
 				$('#js-navlist li').removeClass 'active'
 				$(@).parent('li').addClass 'active'
-        
-		###
-		$('#portfolio').waypoint ->
-			$(@).waypoint('destroy')
-			$('#portfolio .project').each ->
-				name = $(@).attr('data-name')
-				$('.thumbnail', @).css 'background-image', 'url("img/thumbnails/' + name + '.jpg")'
+		
+		$('#portfolio .project').each ->
+			name = $(@).attr('data-name')
+			$('.thumbnail', @).css 'background-image', 'url("img/thumbnails/' + name + '.jpg")'
 
-				$(@).on 'click', ->
-					require ['text!../items/' + name + '/index.html'], (data) ->
-						$('#portview').html(data).slideDown(500);
-						screenCalc()
-						$('body').animate({
-								scrollTop: $('#portview').offset().top - 80
-						}, 500)
-		###
+			$(@).on 'click', ->
+				require ['text!../items/' + name + '/index.html'], (data) ->
+					$('#portview').html(data).slideDown(500);
+					screenCalc()
+					$('body').animate({
+							scrollTop: $('#portview').offset().top - 80
+					}, 500)
+
+		$('#portfolio-grid').mixitup()
+
 		screenCalc()
 
 	screenCalc = () ->
 		standard = { x: 960, y: 573 }
 
 		$('.screened').each ->
-
-			if $('.screen', @).length isnt 0 then return false
+			if $('.screen', @).length isnt 0 then return true
 
 			$parent = $(@).parent()
 			dims =
@@ -136,7 +134,8 @@ define [
 				height   : 470 * scale
 
 			$('> *:first-child', @).wrap wrap
-			$(@).append(scr).css('height', standard.y * scale);
+			$(@).append(scr).css 'height', standard.y * scale
+			return true
 
 	isInViewport = (el) ->
 		top = $(el).offset().top
