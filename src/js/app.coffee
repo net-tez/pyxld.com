@@ -195,12 +195,13 @@ define [
 
 		$('.slide').css
 			'min-height': height + 'px'
-
+	###
 	flipBind = ->
-		$('.service').hover(
+		wrap = $('<div />').hover(
 			-> $(@).addClass('hover'),
 			-> $(@).removeClass('hover')
 		)
+	###
 
 
 

@@ -327,10 +327,38 @@ a.social {
 
 .service {
 	text-align: center;
-	padding: 40px 0;
 	position: relative;
-	.rotateY(0deg);
-	.transition(0.2s);
+
+	> div {
+		.rotateY(0deg);
+		.transition(0.2s);
+		padding: 40px 0;
+
+		&::after {
+			content: "\00a0";
+			display: block;
+			background: #fff;
+			position: absolute;
+			top: 5em;
+			width: 90%;
+			height: 65%;
+			z-index: 0;
+			left: 5%;
+			border-radius: 4px;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+		}
+	}
+	&:hover > div {
+		.animation(flipper-rotate 0.2s);
+
+		p, h3, .fa {
+			color: #fff;
+			.transition(0.2s);
+		}
+		&::after, .fa {
+			background: #000;
+		}
+	}
 
 	h3 {
 		margin: 10px 0 0;
@@ -348,19 +376,6 @@ a.social {
 		position: relative;
 		z-index: 10;
 	}
-	&::after {
-		content: "\00a0";
-		display: block;
-		background: #fff;
-		position: absolute;
-		top: 5em;
-		width: 90%;
-		height: 65%;
-		z-index: 0;
-		left: 5%;
-		border-radius: 4px;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-	}
 	.fa {
 		background: #fff;
 		color: #000;
@@ -368,18 +383,6 @@ a.social {
 	}
 	p, h3, .fa {
 		.transition(0.2s);
-	}
-
-	&.hover {
-		.animation(flipper-rotate 0.2s);
-
-		p, h3, .fa {
-			color: #fff;
-			.transition(0.2s);
-		}
-		&::after, .fa {
-			background: #000;
-		}
 	}
 }
 
