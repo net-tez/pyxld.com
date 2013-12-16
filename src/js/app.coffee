@@ -195,16 +195,7 @@ define [
 
 		$('.slide').css
 			'min-height': height + 'px'
-	###
-	flipBind = ->
-		wrap = $('<div />').hover(
-			-> $(@).addClass('hover'),
-			-> $(@).removeClass('hover')
-		)
-	###
-
-
-
+	
 	resizeUpdates = _.throttle(
 		->
 			centerElements()
@@ -218,7 +209,6 @@ define [
 				initPrecenter()
 				setSlide()
 				centerElements()
-				flipBind()
 				initPostcenter()
 
 				$(window).on 'resize', resizeUpdates

@@ -274,6 +274,7 @@ a.social {
 	color: #999;
 	background: rgba(0, 0, 0, 0);
 	line-height: 1em;
+	text-align: center;
 
 	&:hover {
 		background: #000;
@@ -485,12 +486,103 @@ a.social {
 	}
 }
 h3.title {
+	text-align: left;
+	text-transform: uppercase;
+	color: #666;
+
 	&::after {
 		content: "\00a0";
 		width: 3em;
-		height: 3px;
+		height: 1px;
 		display: block;
-		background: #000;
+		background: #ccc;
 		margin: 10px 0;
 	}
+}
+
+#contact {
+	background: #3fb4e2;
+	color: #fff;
+	padding-bottom: 130px;
+
+	.row {
+		font-size: 1.2em;
+	}
+	
+	input, textarea {
+		border-radius: 1px;
+		border: none;
+		background: #247fa3;
+		color: #76c7e6;
+		font-style: italic;
+		font-family: @font-family-serif;
+		display: block;
+		width: 100%;
+		margin: 10px 0;
+		padding: 8px;
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+		text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+
+		&:focus {
+			font-style: normal;
+			color: #fff;
+		}
+	}
+	input {
+		.placeholder(#76c7e6)
+	}
+
+	input[type="submit"] {
+		background: #96d7f2;
+		text-transform: uppercase;
+		font-family: @font-family-sans-serif;
+		font-style: normal;
+		color: #2781a5 !important;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+		letter-spacing: 1px;
+
+		&:hover {
+			background: #b5e1f3;
+		}
+	}
+
+	a.social {
+		color: #fff;
+		border-color: #fff;
+		text-align: center;
+		margin: 0 3px;
+
+		&:hover {
+			border-color: #000;
+		}
+	}
+
+	#socialbar {
+		background: url('../img/logo-small.png') 20px center no-repeat;
+		min-height: 46px;
+		text-align: right;
+	}
+
+	h1 {
+		color: #fff;
+	}
+
+	footer {
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		width:100%;
+	}
+}
+
+footer {
+	line-height: 75px;
+	background: #247fa3;
+	border-top: 1px solid #79cbeb;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 300;
+	color: #3fb4e2;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
