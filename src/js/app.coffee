@@ -6,9 +6,77 @@ define [
 	'mixitup'
 ], ($, _) ->
 
+	class Testimonials
+
+		constructor: ->
+			@index = -1
+			@testimonials = {}
+
+			_this = @
+			$('#clients li').each ->
+				_this.testimonials[$(@).attr('data-name')] = $(@).html()
+			$('#clients ul').remove()
+
+			@length = _.keys(@testimonials).length
+
+			@$clients = $('#clients')
+			@$image = $('img', @$clients)
+			@$quote = $('blockquote', @$clients)
+
+			@showNth(0)
+
+			$('.arr-left', @$clients).on 'click', @showPrev
+			$('.arr-right', @$clients).on 'click', @showNext
+
+		showNth: (index) ->
+			name = _.keys(@testimonials)[index]
+			item = @testimonials[name]
+			@index = index
+
+			barheight = $('.white', @$clients).height()
+
+			dup = ($elem, cb)->
+				start = $elem.css 'top'
+				$elem.animate {top: barheight, opacity: 0}, 300, 'linear', ->
+					cb()
+					$elem.animate
+						top: start,
+						opacity: 1
+
+			dup @$image, =>
+				@$image.attr 'src', 'items/' + name + '/profile.jpg'
+			dup @$quote, =>
+				@$quote.html item
+
+			@switchBackground name
+
+		switchBackground: (name) ->
+			$('.bg', @$clients).fadeOut 500, $(@).remove
+
+			$elem = $('<div class="bg" />')
+
+			@$clients.append $elem
+
+			$elem.css('background-image', 'url(\'items/' + name + '/xlarge.jpg\')').fadeIn 500
+
+		showNext: =>
+			if goto = @index + 1 is @length
+				goto = 0
+
+			@showNth goto
+
+		showPrev: =>
+			if goto = @index - 1 < 0
+				goto = @length
+
+			@showNth goto
+
 	initPrecenter = ->
 
 	initPostcenter = ->
+		
+		new Testimonials()
+
 		controller = $.superscrollorama
 			triggerAtCenter: false,
 			playoutAnimations: true
@@ -169,8 +237,8 @@ define [
 		$(element).waypoint startInterval
 
 
-	centerElements = ->
-		$('.center').each ->
+	centerElements = (parent = 'body')->
+		$('.center', parent).each ->
 			p_width  = $(@).parent().width();
 			p_height = $(@).parent().height();
 
