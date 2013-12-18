@@ -197,11 +197,11 @@ define [
 			wrap = $('<div />');
 			wrap.css
 				position : 'absolute'
-				top      : 30 * scale
-				left     : 112 * scale
+				top      : 31 * scale
+				left     : 115 * scale
 				overflow : 'hidden'
-				width    : 735 * scale
-				height   : 470 * scale
+				width    : 731 * scale
+				height   : 457 * scale
 
 			$('> *:first-child', @).wrap wrap
 			$(@).append(scr).css 'height', standard.y * scale
