@@ -60,13 +60,15 @@ define [
 			$elem.css('background-image', 'url(\'items/' + name + '/xlarge.jpg\')').fadeIn 500
 
 		showNext: =>
-			if goto = @index + 1 is @length
+			goto = @index + 1
+			if goto is @length
 				goto = 0
 
 			@showNth goto
 
 		showPrev: =>
-			if goto = @index - 1 < 0
+			goto = @index - 1
+			if goto < 0
 				goto = @length
 
 			@showNth goto
