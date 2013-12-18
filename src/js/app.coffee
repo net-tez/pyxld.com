@@ -51,13 +51,13 @@ define [
 			@switchBackground name
 
 		switchBackground: (name) ->
-			$('.bg', @$clients).fadeOut 500, $(@).remove
+			$('.bg', @$clients).fadeOut 500, -> $(@).remove()
 
-			$elem = $('<div class="bg" />')
-
-			@$clients.append $elem
-
-			$elem.css('background-image', 'url(\'items/' + name + '/xlarge.jpg\')').fadeIn 500
+			$('<div class="bg" />')
+				.css('background-image', 'url(\'items/' + name + '/xlarge.jpg\')')
+				#.hide()
+				.prependTo(@$clients)
+				#.fadeIn 500
 
 		showNext: =>
 			goto = @index + 1
