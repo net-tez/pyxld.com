@@ -143,7 +143,7 @@ define [
 		)
         
 		$('a.scrollto').on 'click', (e) ->
-			$('body').animate({
+			$('html, body').animate({
 					scrollTop: $( $(@).attr('href') ).offset().top
 				}, 1000)
 			
