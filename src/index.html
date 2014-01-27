@@ -229,16 +229,16 @@
 		</div>
 	</div>
 	<div id="contact" class="slide">
-		<form class="container">
+		<div class="container">
 			<h1 class="section-title">Contact Us</h1>
-			<div class="row">
+			<form class="row" action="submit.php" method="POST">
 				<div class="col-md-4">
 					<input type="text" name="name" placeholder="Your Name" class="form-control">
-					<input type="text" name="contact" placeholder="Contact" class="form-control">
+					<input type="text" name="email" placeholder="Contact" class="form-control">
 					<p>How would you like us to contact you? Tell us your email, Skype name, phone number, or all of the above, and we'll get in touch.</p>
 				</div>
 				<div class="col-md-4">
-					<textarea name="message" cols="30" rows="10">I want a...</textarea>
+					<textarea name="content" cols="30" rows="10">I want a...</textarea>
 					<input type="submit" value="submit">
 				</div>
 				<div class="col-md-4">
@@ -258,7 +258,7 @@
 					</div>
 				</div>
 			</div>
-		</form>
+		</div>
 		<footer>
 			Copyright 2013 Pyxl Design
 		</footer>

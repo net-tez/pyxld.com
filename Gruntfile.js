@@ -108,7 +108,7 @@ module.exports = function(grunt) {
       watch: ['watch:coffee', 'watch:less', 'watch:html']
     },
     clean: {
-      pre: ['dist'],
+      pre: ['dist/css', 'dist/img', 'dist/js', 'dist/items', 'dist/*.html'],
       post: ['.tmp']
     },
     watch: {
